@@ -26,13 +26,16 @@ device.on('answered', () => {
 
 process.stdin.resume();
 
-const forceStop = (err) => {
+const shutDown = (err) => {
     if (err) console.log(err);
-    console.log('forced stop');
+    console.log('shut down');
     device.endCall();
     setTimeout(process.exit, 1000);
 };
 
-process.on('SIGINT', forceStop);
-process.on('beforeExit', forceStop);
-process.on('uncaughtException', forceStop);
+device.on('error', shutDown);
+process.on('SIGINT', shutDown);
+process.on('SIGTERM', shutDown);
+process.on('beforeExit', shutDown);
+process.on('uncaughtException', shutDown);
+process.on('unhandledRejection', shutDown);

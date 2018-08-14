@@ -16,6 +16,12 @@ class Device extends events.EventEmitter {
             if (cmd === 'ANSWER')                this.emit('answered');
             if (cmd === 'HANGUP: 1')             this.emit('hungUp');
         });
+
+        this.cmdPort.on('error', err => this.emit('error', err));
+        this.cmdPort.on('close', ()  => this.emit('error', new Error('cmdPort is closed')));
+
+        this.voicePort.on('error', err => this.emit('error', err));
+        this.voicePort.on('close', ()  => this.emit('error', new Error('voicePort is closed')));
     }
 
     call(to) {
