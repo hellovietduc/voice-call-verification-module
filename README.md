@@ -9,10 +9,10 @@ ZTE MF190 which supports voice-call.
 G.711, μ-law encoding, mono channel, 8000 Hz sample rate.
 
 #### At what rate I send the files?
-160 bytes each 20ms, so it's 8 bytes per milisecond.
+160 bytes each 20ms, so it's 8 bytes per millisecond.
 
 ## Using the module
-This module can be used for any other types of datacard which support voice-call, but the signals they return may differ. This can be editted in the constructor of the `device.js` file.
+This module can be used for any other types of datacard which support voice-call, but the signals they return may differ. This can be edited in the constructor of the `device.js` file.
 
 In a real-world program, the module should be implemented like this:
 1. Each verification request is placed in a queue with the phone number is the required info.

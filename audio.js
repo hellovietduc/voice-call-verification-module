@@ -19,7 +19,7 @@ const sendAudio = (audio, device) => {
         device.writeToVoicePort(part);
         i++;
     }, 20);
-    return audio.length / 8; // 8 bytes/milisecond
+    return audio.length / 8; // 8 bytes/millisecond
 };
 
 module.exports = {
