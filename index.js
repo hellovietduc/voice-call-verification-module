@@ -1,5 +1,6 @@
 const Device = require('./device');
 const { getAudio, sendAudio } = require('./audio');
+const sipCall = require('./sip');
 
 const devices = new Map();
 
@@ -40,7 +41,7 @@ const call = (to, code, deviceName) => {
     device.call(to);
     device.on('answered', () => {
         console.log('answered');
-        const audio = getAudio(code.split(''));
+        const audio = getAudio(code);
         const callDuration = sendAudio(audio, device);
         setTimeout(() => {
             device.endCall();
@@ -54,5 +55,6 @@ module.exports = {
     addDevice,
     removeDevice,
     cleanUp,
-    call
+    call,
+    sipCall
 };

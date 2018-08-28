@@ -1,10 +1,12 @@
 const fs = require('fs');
 
 const getAudio = (code) => {
-    const intro = fs.readFileSync('./files/intro.wav');
-    const repeat = fs.readFileSync('./files/repeat.wav');
+    if (!Array.isArray(code)) code = code.toString().split('');
+
+    const intro = fs.readFileSync('./files/dcom/intro.wav');
+    const repeat = fs.readFileSync('./files/dcom/repeat.wav');
     const digits = [];
-    code.forEach(d => digits.push(fs.readFileSync(`./files/${d}.wav`)));
+    code.forEach(d => digits.push(fs.readFileSync(`./files/dcom/${d}.wav`)));
 
     const totalLength = intro.length + repeat.length + 2 * digits.reduce((p, c) => p + c.length, 0);
     return Buffer.concat([intro, ...digits, repeat, ...digits], totalLength);

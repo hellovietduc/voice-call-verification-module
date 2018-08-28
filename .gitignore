@@ -65,3 +65,6 @@ typings/
 
 # user-guide file
 _example.js
+
+# sip generated directory
+mwphonedata/
